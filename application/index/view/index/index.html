@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>{$config.title}</title>
+	<meta name="renderer" content="webkit|ie-comp|ie-stand">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <meta http-equiv="Cache-Control" content="no-siteapp" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/assets/images/favicon.ico">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+	<link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="__CDN__/assets/home/js/jquery.min.js"></script>
+    <script src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+</head>
+<body>
+    <!-- 顶部开始 -->
+    {include file="common/container" /}
+    <!-- 顶部结束 -->
+    <!-- 中部开始 -->
+     <!-- 左侧菜单开始 -->
+    {include file="common/left-nav" /}
+    <!-- <div class="x-slide_left"></div> -->
+    <!-- 左侧菜单结束 -->
+    <!-- 右侧主体开始 -->
+    <div class="page-content">
+        <div class="layui-tab tab" lay-filter="xbs_tab" lay-allowclose="false">
+          <ul class="layui-tab-title">
+            <li class="home"><i class="layui-icon">&#xe68e;</i>我的首页</li>
+          </ul>
+          <div class="layui-tab-content">
+            <div class="layui-tab-item layui-show">
+                <iframe src="{:url('home/index')}" frameborder="0" scrolling="yes" class="x-iframe"></iframe>
+            </div>
+          </div>
+        </div>
+    </div>
+    <div class="page-content-bg"></div>
+    <!-- 右侧主体结束 -->
+    <!-- 中部结束 -->
+    <!-- 底部开始 -->
+    <!--<div class="footer">
+        <div class="copyright">Copyright ©2020 家源学苑  </div>
+    </div>-->
+    <!-- 底部结束 -->
+
+<script>
+	/* 获取当前日期 */
+ function showTime(){
+ var show_day=new Array('星期日','星期一','星期二','星期三','星期四','星期五','星期六');
+ var time=new Date();
+var year=time.getFullYear();
+ var month=time.getMonth()+1;
+ var date=time.getDate();
+ var day=time.getDay();
+ var hour=time.getHours();
+ var minutes=time.getMinutes();
+ var second=time.getSeconds();
+/*  month<10?month='0'+month:month;  */
+ hour<10?hour='0'+hour:hour;
+ minutes<10?minutes='0'+minutes:minutes;
+ second<10?second='0'+second:second;
+ var now_time=' '+show_day[day]+''+'/'+year+'.'+month+'.'+date+'';
+ document.getElementById('showtime').innerHTML=now_time;
+ /* setTimeout("showTime();",1000);  */
+}
+ $(function()
+{
+showTime();
+});
+</script>
+</body>
+</html>

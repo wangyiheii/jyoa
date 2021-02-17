@@ -1,0 +1,37 @@
+	<xblock>
+		<button class="layui-btn" style="background: none;color:#0e497b;">处理记录</button>
+	</xblock>
+	<div class="x-body">
+		<table class="layui-table">
+			<thead>
+				<tr>
+					<th>序号</th>
+					<th>动作</th>
+					<th>处理人</th>
+					<th>状态</th>
+					<th>说明</th>
+					<th>时间</th>
+			</tr>
+			</thead>
+			<tbody>
+				{volist name="handle_log" id="vo" key="k"}
+				<tr>
+					<td>{$k}</td>
+					<td>{$vo.title}</td>
+					<td>{$vo.user_name}</td>
+					<td>{$vo.state}</td>
+					<td>{$vo.content}</td>
+					<td>{$vo.creation_time|date='Y-m-d H:i:s',###}</td>
+				</tr>
+				{/volist}
+			</tbody>
+		</table>
+    </div>
+    <xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">查阅记录</button>
+	  </xblock>
+	  <ul class="lookrecords">
+		{volist name="consult_log" id="vo"}
+		  <li><img src="{$vo.avatar}"/><p>{$vo.nickname}</p></li>
+		{/volist}
+	  </ul>

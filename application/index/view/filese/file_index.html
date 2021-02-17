@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html>
+
+    <meta charset="UTF-8">
+    <title>文档中心</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .layui-form-select{
+        display: inline-block;
+      }
+      .x-left{
+        width: 20%;
+        border: 1px solid #ccc;
+        margin: 2% 1%;
+      }
+      .x-left span:nth-child(1){
+        width: 40%;
+        display: inline-block;
+        position: relative;
+        padding: 9px 15px;
+        min-height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+      }
+      .x-left span:nth-child(2){
+        width: 20%;
+        position: relative;
+        padding: 9px 15px;
+        min-height: 20px;
+        line-height: 20px;
+        font-size: 14px;
+        display: inline-block;
+      }
+      .x-left ul li {
+        border-bottom: 1px solid #ccc;
+      }
+      .x-left-buttom{
+        width: 100%;
+        background: #e8e8e8;
+        overflow: hidden;
+        padding: 2% 0;
+        text-align: center;
+      }
+      #fileup{
+            position: absolute;
+            left: 0;
+            top: 0;
+            opacity: 0;
+        }
+    .zzhao {
+        display: none;
+        width: 100%;
+        height: 100%;
+        position: fixed;
+        top: 0;
+        left: 0;
+        background: rgba(0,0,0,0.1);
+        z-index: 90;
+    }
+    .zzhao_tc{
+        position: fixed;
+        top: 0;
+        left: 36%;
+        width: 30%;
+        height: 40%;
+        background: #fff;
+        border-radius: 5px;
+        margin: 12% auto;
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 999;
+    }
+    .zzhao_tc input{
+        width: 70%;
+        height: 20%;
+        display: block;
+        margin: 0 15%;
+        margin-top: 10%;
+    }
+    .zzhao_tc button{
+        width: 20%;
+        border: 0;
+        border-radius: 5px;
+        margin: 4% 0;
+        color: #fff;
+    }
+    .zzhao_tc button:nth-child(1){
+        background: blue;
+        margin-left: 22%;
+    }
+    .zzhao_tc button:nth-child(2){
+        background: #a5a5a5;
+        margin-left: 16%;
+    }
+    </style>
+  </head>
+
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">资源共享</a>
+        <a>
+          <cite>文档中心</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div style="display: flex;">
+      <div class="x-left">
+        <div style="background-color: #f2f2f2;">
+          <span>文档分区</span>
+          <span>文件数</span>
+          <span>操作</span>
+        </div>
+        <ul style="height: 600px;overflow: auto;" class="wjj">
+        {volist name="folder_list" id="vo" key="k"}
+          <li class="{$vo.id}">
+              <span>{$vo.title}</span>
+              <span>{$vo.count}</span>
+              <span><a title="删除" onclick="member_del(this,'{$vo.id}')" href="javascript:;">
+                <i class="layui-icon"></i>
+              </a></span>
+          </li>
+        {/volist}
+        </ul>
+        <ul class="x-left-buttom">
+          <li class="layui-col-xs4" style="width: 100%;border: 0;"><a href="07zygx_wdzx_fqgl.html">文档分区管理</a></li>
+          </li>
+        </ul>
+      </div>
+      <div class="x-body" style="width: 80%;">
+        <div class="layui-row">
+          <div class="layui-form layui-col-md12 x-so" >
+            
+            <label>
+                <button type="button" class="layui-btn"><i class="layui-icon"></i>上传文件</button>
+                <input type="file" name="" id="fileup" value="上传文件" onchange="upload(this)"/>
+            </label>
+            
+            <input type="text" name="title"  placeholder="文件名" autocomplete="off" class="layui-input" style="margin-left: 1%;" value="{$title|default=''}" >
+            <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+            <!--<button type="button" class="layui-btn layui-btn-primary">共享</button>-->
+            <!--<button type="button" class="layui-btn layui-btn-primary">取消共享</button>-->
+            <button class="layui-btn layui-btn-danger" style="float: right;"  id="delAll"><i class="layui-icon"></i>批量删除</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="float: right;">导出</button>
+            <button type="button" class="layui-btn layui-btn-primary" style="float: right;" id="cjwjj">创建文件夹</button>
+          </div>
+        </div>
+        <table class="layui-table wjlb">
+          <thead>
+            <tr>
+              <th>
+                <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+              </th>
+              <th>序号</th>
+              <th>名称</th>
+              <th>类型</th>
+              <th>大小</th>
+              <th>创建者</th>
+              <th>创建时间</th>
+              <th>共享给</th>
+              <th>下载次数</th>
+              <th>操作</th></tr>
+          </thead>
+          <tbody class="wjlist">
+            {volist name="list_file" id="vo" key="k"}
+            <tr>
+              <td>
+                <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$vo.id}'><i class="layui-icon">&#xe605;</i></div>
+              </td>
+              <td>{$vo.id}</td>
+              <td>{$vo.title}</td>
+              <td>{$vo.type}</td>
+              <td>{$vo.size}</td>
+              <td>{$vo.user_name}</td>
+              <td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+              <td>{$vo.folder_name}</td>
+              <td>{$vo.download_num}</td>
+              <td><a href="{$vo.src}"  download class="download" data-id="{$vo.id}" >下载</a></td>
+            </tr>
+            {/volist}
+          </tbody>
+        </table>
+        <!--<div class="page">-->
+        <!--  <div>-->
+        <!--    <a class="prev" href="">&lt;&lt;</a>-->
+        <!--    <a class="num" href="">1</a>-->
+        <!--    <span class="current">2</span>-->
+        <!--    <a class="num" href="">3</a>-->
+        <!--    <a class="num" href="">489</a>-->
+        <!--    <a class="next" href="">&gt;&gt;</a>-->
+        <!--  </div>-->
+        <!--</div>-->
+        {$list_file->render()}
+      </div>
+    </div>
+    <div class="zzhao"></div>
+    <form id="scwjj" action="">
+        <div class="zzhao_tc" style="display: none;">
+            <input type="text" name="title" id="" value="" placeholder="请输入文件夹名称"/>
+            <button style="background: rgb(0, 61, 204);margin: 4% auto;width: 40%;"id="zzhaoyes">创建</button>
+        </div>
+    </form>
+    <script>
+       $('#scwjj').submit(function (event) {
+
+        event.preventDefault();
+        
+        return false;
+        
+        });
+        //创建文件夹
+        $("#cjwjj").click(function(){
+            $('.zzhao').show();
+            $('.zzhao_tc').show();
+        })
+        $('.zzhao').click(function(){
+    		$('.zzhao').hide();
+    		$('.zzhao_tc').hide();
+    	})
+        $("#zzhaoyes").click(function(){
+            if($(".zzhao_tc input").val() == ""){
+                layer.msg("内容不可为空");
+                return false;
+            }
+            // var obj = {title:$(".zzhao_tc input").val()}
+            var title  = $("#scwjj").serialize();
+            // var title  = JSON.stringify(obj);
+             $.ajax({
+                  type: "GET",
+                  url: "{:url('add_folder')}",
+                  data: title,
+                  contentType: false,
+                  processData: false,
+                  dataType: "json",
+                  success: function(data){   
+                      console.log(data)
+                      layer.msg("创建成功");
+                  }
+              });
+               $('.zzhao').hide();
+            $('.zzhao_tc').hide();
+        })
+        var folder_id;
+        //选择左侧文件夹
+        $(".x-left .wjj li").each(function(){
+            $(this).css("background","#fff")
+            $(this).click(function(){
+                $(this).css("background","rgb(236 236 236)")
+                folder_id = parseFloat($(this).attr("class"))
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('select_folder')}",
+                    data: {id:folder_id},
+                    dataType: "json",
+                    success: function(data){      
+                        var jsondata = JSON.parse(data)
+                        if(jsondata.code == 1){
+                            $(".wjlist").html('')
+                            for(i in jsondata.data.data) {
+                                
+                                var timedata = date('Y-m-d H:i:s',jsondata.data.data[i].add_time)
+                                var str = '<td><div class="layui-unselect layui-form-checkbox layui-form-checked" lay-skin="primary" data-id='+jsondata.data.data[i].id+'><i class="layui-icon">&#xe605;</i></div></td><td>'+jsondata.data.data[i].id+'</td><td>'+jsondata.data.data[i].title+'</td><td>'+jsondata.data.data[i].type+'</td><td>'+jsondata.data.data[i].size+'</td><td>'+jsondata.data.data[i].user_name+'</td><td>'+timedata+'</td><td>'+jsondata.data.data[i].folder_name+'</td><td>'+jsondata.data.data[i].download_num+'</td><td><a href="'+jsondata.data.data[i].src+'"  download class="download" data-id="'+jsondata.data.data[i].id+'" >下载</a></td>'
+                                $(".wjlist").append('<tr>'+str+'</tr>')
+                                // console.log( $(".wjlist").html())
+                            }
+                            $(".layui-form-checkbox").click(function(){
+                                if($(this).hasClass('layui-form-checked') == true){
+                                    $(this).removeClass('layui-form-checked')
+                                }else{
+                                    $(this).addClass('layui-form-checked')
+                                }
+                            })
+                             //下载
+                             $(".download").click(function(){
+                                 var id = parseFloat($(this).attr("data-id"))
+                                  $.ajax({
+                                      type: "POST",
+                                      url: "{:url('download')}",
+                                      data:{'id':id},
+                                      success: function(data){   
+                                          console.log(data)
+                                        
+                                      }
+                                  });
+                             })
+                        }else{
+                            console.log(jsondata.msg)
+                        }
+                    }
+                });
+            })
+        })
+        
+         //下载
+         $(".download").click(function(){
+                if(folder_id == undefined){
+                    layer.msg("未选择文件夹");
+                    return false;
+                }
+         })
+        /** 
+         * 时间戳格式化函数 
+         * @param  {string} format    格式 
+         * @param  {int}    timestamp 要格式化的时间 默认为当前时间 
+         * @return {string}           格式化的时间字符串 
+         */
+    function date(format, timestamp){  
+        var a, jsdate=((timestamp) ? new Date(timestamp*1000) : new Date()); 
+        var pad = function(n, c){ 
+            if((n = n + "").length < c){ 
+                return new Array(++c - n.length).join("0") + n; 
+            } else { 
+                return n; 
+            } 
+        }; 
+        var txt_weekdays = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"]; 
+        var txt_ordin = {1:"st", 2:"nd", 3:"rd", 21:"st", 22:"nd", 23:"rd", 31:"st"}; 
+        var txt_months = ["", "January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];  
+        var f = { 
+            // Day 
+            d: function(){return pad(f.j(), 2)}, 
+            D: function(){return f.l().substr(0,3)}, 
+            j: function(){return jsdate.getDate()}, 
+            l: function(){return txt_weekdays[f.w()]}, 
+            N: function(){return f.w() + 1}, 
+            S: function(){return txt_ordin[f.j()] ? txt_ordin[f.j()] : 'th'}, 
+            w: function(){return jsdate.getDay()}, 
+            z: function(){return (jsdate - new Date(jsdate.getFullYear() + "/1/1")) / 864e5 >> 0}, 
+            
+            // Week 
+            W: function(){ 
+                var a = f.z(), b = 364 + f.L() - a; 
+                var nd2, nd = (new Date(jsdate.getFullYear() + "/1/1").getDay() || 7) - 1; 
+                if(b <= 2 && ((jsdate.getDay() || 7) - 1) <= 2 - b){ 
+                    return 1; 
+                } else{ 
+                    if(a <= 2 && nd >= 4 && a >= (6 - nd)){ 
+                        nd2 = new Date(jsdate.getFullYear() - 1 + "/12/31"); 
+                        return date("W", Math.round(nd2.getTime()/1000)); 
+                    } else{ 
+                        return (1 + (nd <= 3 ? ((a + nd) / 7) : (a - (7 - nd)) / 7) >> 0); 
+                    } 
+                } 
+            }, 
+            
+            // Month 
+            F: function(){return txt_months[f.n()]}, 
+            m: function(){return pad(f.n(), 2)}, 
+            M: function(){return f.F().substr(0,3)}, 
+            n: function(){return jsdate.getMonth() + 1}, 
+            t: function(){ 
+                var n; 
+                if( (n = jsdate.getMonth() + 1) == 2 ){ 
+                    return 28 + f.L(); 
+                } else{ 
+                    if( n & 1 && n < 8 || !(n & 1) && n > 7 ){ 
+                        return 31; 
+                    } else{ 
+                        return 30; 
+                    } 
+                } 
+            }, 
+            
+            // Year 
+            L: function(){var y = f.Y();return (!(y & 3) && (y % 1e2 || !(y % 4e2))) ? 1 : 0}, 
+            //o not supported yet 
+            Y: function(){return jsdate.getFullYear()}, 
+            y: function(){return (jsdate.getFullYear() + "").slice(2)}, 
+            
+            // Time 
+            a: function(){return jsdate.getHours() > 11 ? "pm" : "am"}, 
+            A: function(){return f.a().toUpperCase()}, 
+            B: function(){ 
+                // peter paul koch: 
+                var off = (jsdate.getTimezoneOffset() + 60)*60; 
+                var theSeconds = (jsdate.getHours() * 3600) + (jsdate.getMinutes() * 60) + jsdate.getSeconds() + off; 
+                var beat = Math.floor(theSeconds/86.4); 
+                if (beat > 1000) beat -= 1000; 
+                if (beat < 0) beat += 1000; 
+                if ((String(beat)).length == 1) beat = "00"+beat; 
+                if ((String(beat)).length == 2) beat = "0"+beat; 
+                return beat; 
+            }, 
+            g: function(){return jsdate.getHours() % 12 || 12}, 
+            G: function(){return jsdate.getHours()}, 
+            h: function(){return pad(f.g(), 2)}, 
+            H: function(){return pad(jsdate.getHours(), 2)}, 
+            i: function(){return pad(jsdate.getMinutes(), 2)}, 
+            s: function(){return pad(jsdate.getSeconds(), 2)}, 
+            //u not supported yet 
+            
+            // Timezone 
+            //e not supported yet 
+            //I not supported yet 
+            O: function(){ 
+                var t = pad(Math.abs(jsdate.getTimezoneOffset()/60*100), 4); 
+                if (jsdate.getTimezoneOffset() > 0) t = "-" + t; else t = "+" + t; 
+                return t; 
+            }, 
+            P: function(){var O = f.O();return (O.substr(0, 3) + ":" + O.substr(3, 2))}, 
+            //T not supported yet 
+            //Z not supported yet 
+            
+            // Full Date/Time 
+            c: function(){return f.Y() + "-" + f.m() + "-" + f.d() + "T" + f.h() + ":" + f.i() + ":" + f.s() + f.P()}, 
+            //r not supported yet 
+            U: function(){return Math.round(jsdate.getTime()/1000)} 
+        }; 
+            
+        return format.replace(/[\\]?([a-zA-Z])/g, function(t,s){ 
+            if( t!=s ){ 
+                // escaped 
+                ret = s; 
+            } else if( f[s] ){ 
+                // a date function exists 
+                ret = f[s](); 
+            } else{ 
+                // nothing special 
+                ret = s; 
+            } 
+            return ret; 
+        }); 
+    }
+        $("#fileup").click(function(){
+            if(folder_id == undefined){
+                layer.msg("未选择文件夹");
+                return false;
+            }
+        })
+        //上传文件
+        function upload(e){
+              let fromData = new FormData()
+              let fil = e.files[0]
+              fromData.append('file', fil)
+              fromData.append('folder_id', folder_id)
+              $.ajax({
+                  type: "POST",
+                  url: "{:url('Filese/file_upload')}",
+                  data: fromData,
+                  contentType: false,
+                  processData: false,
+                  success: function(data){  
+                      console.log(data)
+                      if(JSON.parse(data).code == 1){
+                          layer.msg(JSON.parse(data).msg);
+                      }else{
+                          layer.msg(JSON.parse(data).msg);
+                      }
+                    
+                  }
+              });
+        }
+      /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+              $.ajax({
+                type: "POST",
+                url: "{:url('del_folder')}",
+                data: {'id':id},
+                dataType: "json",
+                success: function(data){   
+                    if(JSON.parse(data).code == 0){
+                        layer.msg(JSON.parse(data).msg);
+                    }else{
+                        $(obj).parents("tr").remove();
+                        layer.msg(JSON.parse(data).msg);
+                    }
+                    
+                }
+            });
+              
+          });
+      }
+
+     //删除文件夹对应的文件
+      $("#delAll").click(function(){
+        if(folder_id == undefined){
+            layer.msg("未选择文件夹");
+            return false;
+        }
+        var data = tableCheck.getData();
+        var del = [];
+        var delall = $(".wjlb thead tr th div").hasClass('layui-form-checked');
+        if(delall == true){
+            $(".wjlb tbody tr").each(function(){
+                $(this).find("td:first").find("div").each(function(){
+                    var index = $(this).hasClass('layui-form-checked')
+                    if(index==true){
+                        del.push(parseInt($(this).attr("data-id")))
+                    }
+                    
+                })
+            })
+        }else{
+            $(".wjlb tbody tr").each(function(){
+                $(this).find("td:first").find("div").each(function(){
+                    var index = $(this).hasClass('layui-form-checked')
+                    if(index==true){
+                        del.push(parseInt($(this).attr("data-id")))
+                    }
+                    
+                })
+            })
+        }
+        layer.confirm('确认要删除吗？',function(index){
+            //捉到所有被选中的，发异步进行删除
+            $.ajax({
+                type: "POST",
+                url: "{:url('del_select')}",
+                data: {ids:del},
+                dataType: "json",
+                success: function(data){                
+                         console.log(data)
+                    layer.msg('删除成功', {icon: 1});
+                    $(".layui-form-checked").not('.header').parents('tr').remove();
+                }
+            });
+            
+        });
+    })
+    </script>
+  </body>
+
+</html>

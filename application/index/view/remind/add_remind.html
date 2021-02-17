@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>添加提醒设置</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="./css/font.css">
+    <link rel="stylesheet" href="./css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="./lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="./js/xadmin.js"></script>
+    <link href="assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      #demo1{
+        width:40%;
+        margin-left: 20%;
+      }
+      .layui-form-select{
+        display: none;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="x-body">
+        <form class="layui-form">
+          <div class="layui-form-item">
+              <label for="title" class="layui-form-label">
+                  <span class="x-red">*</span>模块编号
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="title" name="title" required="" lay-verify="required"
+                  autocomplete="off" class="layui-input">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="mainid" class="layui-form-label">
+                  <span class="x-red">*</span>主Id
+              </label>
+              <div class="layui-upload">
+                <input type="text" id="mainid" name="mainid" required="" lay-verify="pass"
+                autocomplete="off" class="layui-input" style="width: 50%;">
+              </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="startdate" class="layui-form-label">
+              <span class="x-red">*</span>开始时间
+            </label>
+            <div class="layui-input-inline">
+              <input class="layui-input" placeholder="设置开始时间" required="" name="start" id="startdate">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="enddate" class="layui-form-label">截止时间
+            </label>
+            <div class="layui-input-inline">
+              <input class="layui-input" placeholder="设置截止时间" name="enddate" id="enddate">
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="remind" class="layui-form-label">
+                  <span class="x-red">*</span>提醒内容
+              </label>
+              <div class="layui-input-inline">
+				        <textarea placeholder="请输入内容" id="remind" name="remind" required="" class="layui-textarea"></textarea>
+				      </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="remindto" class="layui-form-label">
+              提醒给
+            </label>
+            <div class="layui-input-inline">
+                <input type="text" id="remindto" name="remindto" lay-verify="pass"
+                autocomplete="off" class="layui-input">
+            </div>
+            <div class="layui-form-mid layui-word-aux" style="margin-top: -10px;">
+                <button type="button" class="layui-btn layui-btn-normal">选择</button>
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="frequency" class="layui-form-label">
+                提醒频率
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="frequency" name="frequency"lay-verify="required"
+                  autocomplete="off" class="layui-input" value="">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="setup" class="layui-form-label">
+                  频率设置
+              </label>
+              <div class="layui-input-inline" style="width: 76%;" id="pinlv">
+                <div>
+                  <select name=""  style="display: inline-block;width:40%;height: 38px;">
+                    <option value="1">仅一次</option>
+                    <option value="2">每天</option>
+                  </select>
+                  <input class="layui-input" placeholder="2020-12-25" name="setup" id="setup" style="width: 30%;display: inline-block;">
+                  <button type="button" class="layui-btn layui-btn-sm"   onclick="changeadd()" ><i class="layui-icon"></i></button>
+                  <button type="button" class="layui-btn layui-btn-sm changejian"><i class="layui-icon"></i></button>
+                </div>
+
+              </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="state" class="layui-form-label">状态
+            </label>
+            <div class="layui-input-inline">
+              <select name="state" id="state" required="" style="display: block;width:50%;height: 38px;">
+                <option value="1">启用</option>
+                <option value="2">禁用</option>
+              </select>
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="L_repass" class="layui-form-label">
+              </label>
+              <button  class="layui-btn" lay-filter="add" lay-submit="">
+                  	提交
+              </button>
+          </div>
+      </form>
+    </div>
+
+<script>
+  layui.use('laydate', function(){
+    var laydate = layui.laydate;
+
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#applydate' //指定元素
+    });
+
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#startdate' //指定元素
+    });
+
+    //执行一个laydate实例
+    laydate.render({
+      elem: '#enddate' //指定元素
+    });
+  });
+layui.use('layedit', function(){
+  var layedit = layui.layedit;
+  layedit.set({
+	  uploadImage: {
+	    url: '' //接口url
+	    ,type: '' //默认post
+	  }
+	});
+  layedit.build('demo'); //建立编辑器
+});
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+
+	  //常规用法
+	  laydate.render({
+	    elem: '#test1'
+	  });
+	});
+layui.use(['form','layer'], function(){
+    $ = layui.jquery;
+  var form = layui.form
+  ,layer = layui.layer;
+
+  //自定义验证规则
+  form.verify({
+    nikename: function(value){
+      if(value.length < 5){
+        return '昵称至少得5个字符啊';
+      }
+    }
+    ,pass: [/(.+){6,12}$/, '密码必须6到12位']
+    ,repass: function(value){
+        if($('#L_pass').val()!=$('#L_repass').val()){
+            return '两次密码不一致';
+        }
+    }
+  });
+
+  //监听提交
+  form.on('submit(add)', function(data){
+    console.log(data);
+    //发异步，把数据提交给php
+    layer.alert("增加成功", {icon: 6},function () {
+        // 获得frame索引
+        var index = parent.layer.getFrameIndex(window.name);
+        //关闭当前frame
+        parent.layer.close(index);
+    });
+    return false;
+  });
+
+
+});
+</script>
+<script>
+layui.use('upload', function(){
+  var $ = layui.jquery
+  ,upload = layui.upload;
+
+
+  //多文件列表示例
+  var demoListView = $('#demoList')
+  ,uploadListIns = upload.render({
+    elem: '#testList'
+    ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+    ,accept: 'file'
+    ,multiple: true
+    ,auto: false
+    ,bindAction: '#testListAction'
+    ,choose: function(obj){
+      var files = this.files = obj.pushFile(); //将每次选择的文件追加到文件队列
+      //读取本地文件
+      obj.preview(function(index, file, result){
+        var tr = $(['<tr id="upload-'+ index +'">'
+          ,'<td>'+ file.name +'</td>'
+          ,'<td>'+ (file.size/1024).toFixed(1) +'kb</td>'
+          ,'<td>等待上传</td>'
+          ,'<td>'
+            ,'<button class="layui-btn layui-btn-xs demo-reload layui-hide">重传</button>'
+            ,'<button class="layui-btn layui-btn-xs layui-btn-danger demo-delete">删除</button>'
+          ,'</td>'
+        ,'</tr>'].join(''));
+
+        //单个重传
+        tr.find('.demo-reload').on('click', function(){
+          obj.upload(index, file);
+        });
+
+        //删除
+        tr.find('.demo-delete').on('click', function(){
+          delete files[index]; //删除对应的文件
+          tr.remove();
+          uploadListIns.config.elem.next()[0].value = ''; //清空 input file 值，以免删除后出现同名文件不可选
+        });
+
+        demoListView.append(tr);
+      });
+    }
+    ,done: function(res, index, upload){
+      if(res.files.file){ //上传成功
+        var tr = demoListView.find('tr#upload-'+ index)
+        ,tds = tr.children();
+        tds.eq(2).html('<span style="color: #5FB878;">上传成功</span>');
+        tds.eq(3).html(''); //清空操作
+        return delete this.files[index]; //删除文件队列已经上传成功的文件
+      }
+      this.error(index, upload);
+    }
+    ,error: function(index, upload){
+      var tr = demoListView.find('tr#upload-'+ index)
+      ,tds = tr.children();
+      tds.eq(2).html('<span style="color: #FF5722;">上传失败</span>');
+      tds.eq(3).find('.demo-reload').removeClass('layui-hide'); //显示重传
+    }
+  });
+
+});
+</script>
+<script>
+  layui.use('upload', function(){
+    var $ = layui.jquery
+    ,upload = layui.upload;
+
+    //普通图片上传
+    var uploadInst = upload.render({
+      elem: '#test11'
+      ,url: 'https://httpbin.org/post' //改成您自己的上传接口
+      ,before: function(obj){
+        //预读本地文件示例，不支持ie8
+        obj.preview(function(index, file, result){
+          $('#demo1').attr('src', result); //图片链接（base64）
+        });
+      }
+      ,done: function(res){
+        //如果上传失败
+        if(res.code > 0){
+          return layer.msg('上传失败');
+        }
+        //上传成功
+      }
+      ,error: function(){
+        //演示失败状态，并实现重传
+        var demoText = $('#demoText');
+        demoText.html('<span style="color: #FF5722;">上传失败</span> <a class="layui-btn layui-btn-xs demo-reload">重试</a>');
+        demoText.find('.demo-reload').on('click', function(){
+          uploadInst.upload();
+        });
+      }
+    });
+
+
+  });
+  </script>
+  <script>
+    function changeadd(){
+      $('#pinlv').append('<div><select name=""  style="display: inline-block;width:40%;height: 38px;"><option value="1">仅一次</option><option value="2">每天</option></select><input class="layui-input" placeholder="2020-12-25" name="date" id="applyname" style="width: 30%;display: inline-block;"><button type="button" class="layui-btn layui-btn-sm" onclick="changeadd()" ><i class="layui-icon"></i></button><button type="button" class="layui-btn layui-btn-sm changejian"><i class="layui-icon"></i></button></div>')
+      $('.changejian').each(function(){
+        $(this).click(function(){
+          $(this).parent().remove()
+        })
+      })
+    }
+    $('.changejian').click(function(){
+      $(this).parent().remove()
+    })
+
+  </script>
+  </body>
+
+</html>

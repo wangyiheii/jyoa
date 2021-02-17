@@ -1,0 +1,36 @@
+<div class="container">
+    <div class="logo"><a href="/">{$config.title} &nbsp;V1.0</a></div>
+    <div class="left_open">
+        <i title="展开左侧栏" class="iconfont">&#xe699;</i>
+    </div>
+    <div class="data">
+        <!--<img src="assets/images/datas.png">-->
+        <span style="" id="showtime"></span>
+        <a href="#">查看更多日期</a>
+    </div>
+    <ul class="layui-nav right" lay-filter="">
+      <li class="layui-nav-item">
+        <a class="nav-link dropdown-toggle arrow-none"  href="#">
+            <img src="__CDN__/assets/home/assets/images/mess.png"/>
+            <span class="noti-icon-badge"></span>
+        </a>
+      </li>
+      <li class="layui-nav-item">
+        <a class="nav-link dropdown-toggle arrow-none" href="#">
+            <img src="__CDN__/assets/home/assets/images/mail.png" />
+            <span class="noti-icon-badge"></span>
+        </a>
+      </li>
+      <li class="layui-nav-item">
+        <a href="javascript:;">{$admin.username}</a>
+        <dl class="layui-nav-child">
+          <dd><a onclick="x_admin_show('个人设置',' {:url(\'Admin/set_up\')} ')">个人设置</a></dd>
+          <dd><a onclick="x_admin_show('提醒信息','{:url(\'Admin/set_up\')}')">提醒信息</a></dd>
+          <dd><a onclick="x_admin_show('提醒信息','{:url(\'Admin/set_up\')}')">修改头像</a></dd>
+          <dd><a>账号({$admin.username})</a></dd>
+          <dd><a href="{:url('Login/sign_out')}">退出</a></dd>
+        </dl>
+      </li>
+    </ul>
+
+</div>

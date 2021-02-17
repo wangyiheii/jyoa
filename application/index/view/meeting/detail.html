@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>今日会议详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+	<![endif]-->
+	<style>
+		.noticcontion h2{
+			width: 100%;
+			text-align: center;
+			font-size: 1.8rem;
+		}
+		.noticcontion p{
+			color: #969696;
+		}
+		.noticcontion .notictext{
+			margin: 2% 0;
+		}
+		.noticcontion .noticfooter{
+			text-align: right;
+		}
+		.noticcontion .noticfooter p{
+			color: #000;
+		}
+	</style>
+  </head>
+  <body>
+  	<xblock>
+	<button class="layui-btn" style="background: none;color:#0e497b;">会议</button>
+	</xblock>
+	<h2 style="text-align: center;">注册会员</h2>
+    <div class="x-body">
+        <table class="layui-table">
+        	<tr>
+        		<th>会议室</th>
+        		<td>{$data.koosolek}</td>
+        	</tr>
+        	<tr>
+        		<th>主题</th>
+        		<td>{$data.theme}</td>
+        	</tr>
+        	<tr>
+        		<th>主持人</th>
+        		<td>{$data.host}</td>
+        	</tr>
+        	<tr>
+        		<th>开始时间</th>
+        		<td>{$data.start}</td>
+        	</tr>
+        	<tr>
+        		<th>结束时间</th>
+        		<td>{$data.end}</td>
+        	</tr>
+        	<tr>
+        		<th>参会人</th>
+        		<td>{$data.participate}</td>
+        	</tr>
+        	<tr>
+        		<th>发起人</th>
+        		<td>{$data.u_id}</td>
+        	</tr>
+        	<tr>
+        		<th>状态</th>
+        		<td>{$data.state}</td>
+        	</tr>
+        	<tr>
+        		<th>会议纪要人</th>
+        		<td><a title="+新增纪要" href="{:url('Meeting/summary',['id'=>$data['id']])}" href="javascript:;">+新增纪要</a></td>
+        	</tr>
+        	<!--<tr>-->
+        	<!--	<th>短信提醒</th>-->
+        	<!--	<td>否</td>-->
+        	<!--</tr>-->
+        </table>
+        <!--<div class="ping">-->
+        <!--	<i>*</i><span>评论</span><textarea placeholder="请输入评论内容"></textarea>-->
+        <!--	<button class="editbtn">提交评论</button>-->
+        <!--</div>-->
+    </div>
+    <xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">处理记录</button>
+	  </xblock>
+    <div class="x-body">
+        <table class="layui-table">
+        	<thead>
+        		<tr>
+	        		<th>序号</th>
+	        		<th>动作</th>
+	        		<th>处理人</th>
+	        		<th>状态</th>
+	        		<th>说明</th>
+	        		<th>时间</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+        		<tr>
+	        		<td>1</td>
+	        		<td>提交</td>
+	        		<td>管理员</td>
+	        		<td>审核</td>
+	        		<td>内推内容</td>
+	        		<td>2020-12-12 12:30</td>
+	        	</tr>
+	        	<tr>
+	        		<td>2</td>
+	        		<td>催办</td>
+	        		<td>管理员</td>
+	        		<td>审核</td>
+	        		<td>内推内容</td>
+	        		<td>2020-12-12 12:30</td>
+	        	</tr>
+        	</tbody>
+        </table>
+    </div>
+    <xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">查阅记录</button>
+	</xblock>
+	<ul class="lookrecords" style="overflow: hidden;">
+		<li><img src="assets/images/touimg.png"/><p>admin</p></li>
+	  	<li><img src="assets/images/touimg.png"/><p>人事</p></li>
+	  	<li><img src="assets/images/touimg.png"/><p>行政</p></li>
+	</ul>
+   
+  </body>
+
+</html>

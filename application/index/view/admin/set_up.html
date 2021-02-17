@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>个人设置</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta content="A fully featured admin theme which can be used to build CRM, CMS, etc." name="description" />
+        <meta content="Coderthemes" name="author" />
+        <!-- App favicon -->
+        <link rel="shortcut icon" href="__CDN__/assets/home/assets/images/favicon.ico">
+
+        <!-- App css -->
+        <link href="__CDN__/assets/home/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="__CDN__/assets/home/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+		<link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    </head>
+
+    <body>
+
+        <!-- Begin page -->
+<div class="wrapper">
+
+  <div class="container-fluid">
+    <div class="row">
+        <div class="col-xl-6">
+            <div class="card">
+                <div class="card-body">
+                    <ul class="nav nav-tabs mb-3">
+                        <li class="nav-item">
+                            <a href="#home" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                <span class="d-none d-lg-block">基础设置</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#profile" data-toggle="tab" aria-expanded="true" class="nav-link active">
+                                <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                <span class="d-none d-lg-block">修改密码</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#settings" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                <span class="d-none d-lg-block">切换主题</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#imggs" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                <span class="d-none d-lg-block">签名图片</span>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#portrait" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                <span class="d-none d-lg-block">修改头像</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <div class="tab-content">
+                        <div class="tab-pane" id="home">
+                            <form action="{:url('Admin/set_up')}" method="post">
+                                <div class="form-group row mb-3 justify-content-end">
+                                    <div class="col-9">
+                                        <div class="custom-control custom-checkbox">
+                                            <input type="hidden" name="notice" value="0"/>
+                                            <input type="checkbox" class="custom-control-input" id="checkmeout" value="1" name="notice" 
+                                            {eq name="$data['notice']" value="1"} checked {/eq} > 
+                                            <label class="custom-control-label" for="checkmeout">后台不显示提醒消息</label>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 justify-content-end row">
+                                    <div class="col-9">
+                                        <button type="submit" class="btn btn-info  ">确认</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane show active" id="profile">
+                            <form action="{:url('Admin/newpass')}" method="post">
+                                <div class="form-group row mb-3">
+                                    <label for="inputEmail3" class="col-3 col-form-label">旧密码</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control" id="inputPasswordold" placeholder="旧密码" name="used_password">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="inputPassword3" class="col-3 col-form-label">新密码</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control" id="inputPassword3" placeholder="新密码">
+                                    </div>
+                                </div>
+                                <div class="form-group row mb-3">
+                                    <label for="inputPassword5" class="col-3 col-form-label">确认密码</label>
+                                    <div class="col-9">
+                                        <input type="password" class="form-control" id="inputPassword5" placeholder="确认密码" name="password">
+                                    </div>
+                                </div>
+                                <div class="form-group mb-0 justify-content-end row">
+                                    <div class="col-9">
+                                        <button type="submit" class="btn btn-info" onclick="passwordbtn()">确认修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="settings">
+                            <form action="{:url('Admin/set_up')}" method="post">
+                                <div class="bgcolor">
+                                    <strong><span>&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="1" {eq name="$data['theme']" value="1"} checked {/eq}></strong>
+                                    <strong><span style="background: #727cf5;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="2" {eq name="$data['theme']" value="2"} checked {/eq}></strong>
+                                    <strong><span style="background: #6c757d;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="3" {eq name="$data['theme']" value="3"} checked {/eq}></strong>
+                                    <strong><span style="background: #0acf97;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="4" {eq name="$data['theme']" value="4"} checked {/eq}></strong>
+                                    <strong><span style="background: #fa5c7c;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="5" {eq name="$data['theme']" value="5"} checked {/eq}></strong>
+                                    <strong><span style="background: #39afd1;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="6" {eq name="$data['theme']" value="6"} checked {/eq}></strong>
+                                    <strong><span style="background: #313a46;">&nbsp;</span>
+                                        <br><input type="radio" name="theme" value="7" {eq name="$data['theme']" value="7"} checked {/eq}></strong>
+                                </div>
+                                
+                                <div class="form-group mb-0 justify-content-end row">
+                                    <div class="col-9">
+                                        <button type="submit" class="btn btn-info" onclick="bgcolor()">保存修改</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="imggs">
+                            <form action="{:url('Admin/set_up')}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="example-fileinput">上传签名图片</label>
+                                    <img src="{$data['sign_img']}">
+                                    <input type="file" id="example-fileinput" class="form-control-file"  onchange="uploadqm(this)">
+                                    <input type="hidden" name="sign_img" value="{$data.sign_img}" id="formdataqm"/>
+                                </div>
+                                <div class="form-group mb-0 justify-content-end row">
+                                    <div class="col-9">
+                                        <button type="submit" class="btn btn-info" onclick="Image()">确认上传</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="tab-pane" id="portrait">
+                            <form action="{:url('Admin/set_up')}" method="post">
+                                <div class="form-group mb-3">
+                                    <label for="example-fileinput">上传头像</label>
+                                    <img src="{$data.avatar}">
+                                    <input type="file" id="example-fileinput" class="form-control-file" onchange="upload(this)">
+                                    <input type="hidden" name="avatar" value="{$data.avatar}" id="formdatatx"/>
+                                </div>
+                                <div class="form-group mb-0 justify-content-end row">
+                                    <div class="col-9">
+                                        <button type="submit" class="btn btn-info" onclick="portrait()">确认上传</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+
+                </div> <!-- end card-body-->
+            </div> <!-- end card-->
+        </div> <!-- end col -->
+    </div>
+    <!-- end row-->
+</div> <!-- container -->
+        </div>
+        <!-- END wrapper -->
+
+        <!-- App js -->
+        <script src="__CDN__/assets/home/assets/js/app.min.js"></script>
+        <script>
+        	function passwordbtn(){
+        		var oldpass = $('#inputPasswordold').val();
+        		var pass1 = $('#inputPassword3').val();
+        		var pass2 = $('#inputPassword5').val();
+        		if(oldpass == ''){
+        			alert('请输入旧密码')
+        		}
+        		if(pass1.length<6){
+        			alert('密码长度必须大于六位！')
+        		}else{
+        			if(pass1==pass2){
+        			// alert('修改成功')
+	        		}else{
+	        			alert('两次密码输入不同，请重新输入')
+	        		}
+        		}
+        		
+        	}
+        	function bgcolor(){
+        		aler('修改背景色')
+        	}
+        	function upload(e){
+                  let fromData = new FormData()
+                  let fil = e.files[0]
+                   fromData.append('file', fil)
+                   $.ajax({
+                       type: "POST",
+                       url: "{:url('Publicse/upload')}",
+                       data: fromData,
+                       contentType: false,
+                       processData: false,
+                       dataType: "json",
+                       success: function(data){   
+                          $('#formdatatx').val(JSON.parse(data).data)
+                       }
+                   });
+          }
+          function uploadqm(e){
+                  let fromData = new FormData()
+                  let fil = e.files[0]
+                   fromData.append('file', fil)
+                   $.ajax({
+                       type: "POST",
+                       url: "{:url('Publicse/upload')}",
+                       data: fromData,
+                       contentType: false,
+                       processData: false,
+                       dataType: "json",
+                       success: function(data){   
+                          $('#formdataqm').val(JSON.parse(data).data)
+                       }
+                   });
+          }
+        </script>
+    </body>
+</html>

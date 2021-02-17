@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>人员权限管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .layui-table tr {
+          display: inline-block;
+          width: 100%;
+      }
+      .layui-table td, .layui-table th {
+          display: inline-block;
+          width: 15.2%;
+          border: 0;
+      }
+      .grid-demo{
+        border: 2px solid #dedede;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">系统管理</a>
+        <a href="">权限管理</a>
+        <a>
+          <cite>人员权限管理</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+          <button type="button" class="layui-btn layui-btn-normal" id="preservation">保存设置</button>
+          <input type="text" name="title"  placeholder="关键字" autocomplete="off" class="layui-input" value="{$title|default=''}">
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        </form>
+      </div>
+      <div class="layui-row layui-col-space15">
+        <div class="layui-col-md5">
+          <div class="grid-demo">
+              <xblock  style="background-color: #393D49;color:#fff;">
+                <span class="x-left" style="line-height:40px">人员</span>
+              </xblock>
+              <table class="layui-table" id="personnel">
+                <thead>
+                  <tr>
+                    <th>序号</th>
+                    <th>姓名</th>
+                    <th>部门</th>
+                    <th>ID</th></tr>
+                </thead>
+                <tbody style="display: inline-block;overflow: auto;height: 433px;width: 100%;">
+                  {volist name="user_list" id="vo" key="k"}
+                  <tr>
+                    <td>{$k}</td>
+                    <td>{$vo.nickname}</td>
+                    <td>{$vo.d_name}</td>
+                    <td class="personnelid">{$vo.id}</td>
+                  </tr>
+                  {/volist}
+                </tbody>
+              </table>
+              {$user_list->render()}
+          </div>
+        </div>
+        <div class="layui-col-md7">
+          <div class="grid-demo grid-demo-bg1">
+              <xblock  style="background-color: #63BA79;color:#fff;">
+                <span class="x-left" style="line-height:40px">人员[<span id="menuname">{$nickname|default=''}</span>]对应菜单</span>
+                <input type="hidden" name="" id="menunameid" value="" />
+              </xblock>
+              <table class="layui-table" id="menu">
+                <thead>
+                  <tr>
+                    <th>
+                      <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+                    </th>
+                    <th>序号</th>
+                    <th>菜单名称</th>
+                    <!-- <th>编号</th> -->
+                    <!-- <th>ID</th></tr> -->
+                </thead>
+                <tbody style="display: inline-block;overflow: auto;height: 500px;width: 100%;">
+                  {volist name="menu_list" id="vo" key="k"}
+                  <tr>
+                    <td>
+                      <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='{$vo.id}'><i class="layui-icon">&#xe605;</i></div>
+                    </td>
+                    <td>{$k}</td>
+                    <td style="width: 180px">{$vo.title}</td>
+                    <!-- <td>{$vo.id}</td> -->
+                  </tr>
+                  {/volist}
+                </tbody>
+              </table>
+          </div>
+        </div>
+      </div>
+    </div>
+    <script>
+        //默认显示
+        
+        //选择人员显示对应菜单
+        $("#personnel tbody tr").each(function(){
+            $(this).click(function(){
+                var personnelid = parseFloat($(this).find(".personnelid").text());
+                $.ajax({
+                    type: "POST",
+                    url: "{:url('Authority/menu')}",
+                    data: {id:personnelid},
+                    dataType: "json",
+                    success: function(data){   
+                        var nickname = JSON.parse(data).data.nickname;
+                        var user_id = JSON.parse(data).data.user_id;
+                        var list = JSON.parse(data).data.menu_list;
+                        $("#menuname").text(nickname)
+                        $("#menunameid").val(user_id)
+                        $("#menu tbody tr").each(function(){
+                            $(this).find("td:first div").each(function(){
+                                $(this).removeClass(" layui-form-checked")
+                            })
+                        })
+                        $(list).each(function(i,e){
+                            if(e.select == true){
+                                var menuid = this.id;
+                            }
+                            $("#menu tbody tr").each(function(){
+                                $(this).find("td:first div").each(function(){
+                                    if(menuid == parseFloat($(this).attr('data-id'))){
+                                        $(this).addClass(" layui-form-checked")
+                                    }
+                                })
+                            })
+                        })
+                    }
+                });
+                
+            })
+        })
+        //保存设置
+        $("#preservation").click(function(){
+            var edit = [];
+            $("#menu tbody tr").each(function(){
+                $(this).find("td:first div").each(function(){
+                    var index = $(this).hasClass('layui-form-checked')
+                    if(index==true){
+                         edit.push(parseInt($(this).attr("data-id")))
+                    }
+                })
+            })
+            var menunameid = $("#menunameid").val()
+            var editstr = edit.toString();
+            $.ajax({
+                type: "POST",
+                url: "{:url('Authority/personnel_post')}",
+                data: {u_id:menunameid,ids:editstr},
+                dataType: "json",
+                success: function(data){
+                    layer.msg(JSON.parse(data).msg)
+                }
+            });
+        })
+        
+    </script>
+
+  </body>
+
+</html>

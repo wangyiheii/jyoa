@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>出入库详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style>
+      .layui-form-select{
+        display: inline-block;
+      }
+      /*分页样式*/
+        .pagination{
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination li{
+            display: inline-block;
+            background: url(xadmin.css) 0px 0px no-repeat rgb(255, 255, 255);
+            color: rgb(136, 136, 136);
+            padding: 10px;
+            min-width: 15px;
+            border: 1px solid rgb(226, 226, 226);
+        }
+        .pagination .active{
+            display: inline-block;
+            background: url(xadmin.css) 0px 0px no-repeat rgb(0, 61, 204);
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            min-width: 15px;
+            border: 1px solid rgb(0, 61, 204);
+        }
+
+    </style>
+  </head>
+
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">行政</a>
+        <a href="">物品管理</a>
+        <a>
+          <cite>出入库详情</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+          <select name="" id="going">
+            <option value="">全部</option>
+            <option value="1">办公用品</option>
+            <option value="2">用品用具</option>
+        </select>
+        <input class="layui-input" placeholder="月份" name="start" id="start">
+        <input type="text" name="username"  placeholder="关键字/申请人/单号" autocomplete="off" class="layui-input">
+        <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+        <button type="button" class="layui-btn layui-btn-primary" style="float: right;">导出</button>
+        </form>
+      </div>
+      <xblock>
+        <button class="layui-btn layui-btn-danger" onclick="delAll()"><i class="layui-icon"></i>批量删除</button>
+        <span class="x-right" style="line-height:40px">共有数据：88 条</span>
+      </xblock>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>序号</th>
+            <th>名称</th>
+            <th>规格</th>
+            <th>型号</th>
+            <th>分类</th>
+            <th>类型</th>
+            <th>日期</th>
+            <th>操作人</th>
+            <th>数量</th>
+            <th>对应仓库</th>
+            <th>说明</th>
+            <th>状态</th></tr>
+        </thead>
+        <tbody>
+          {volist name="list" id="vo"}
+              <tr>
+                <td>
+                  <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+                </td>
+                <td>{$vo.id}</td>
+                <td>{$vo.title}</td>
+                <td>{$vo.specifications}</td>
+                <td>{$vo.model}</td>
+                <td>{$vo.c_id}</td>
+                <td>{$vo.type}</td>
+                <td>{$vo.add_time|date="Y-m-d H:i:s",###}</td>
+                <td>{$vo.u_id}</td>
+                <td>{$vo.num}</td>
+                <td>{$vo.l_id}</td>
+                <td>{$vo.explain}</td>
+                <td>{$vo.state}</td>
+              </tr>
+          {/volist}
+        </tbody>
+      </table>
+      <!--<div class="page">-->
+      <!--  <div>-->
+      <!--    <a class="prev" href="">&lt;&lt;</a>-->
+      <!--    <a class="num" href="">1</a>-->
+      <!--    <span class="current">2</span>-->
+      <!--    <a class="num" href="">3</a>-->
+      <!--    <a class="num" href="">489</a>-->
+      <!--    <a class="next" href="">&gt;&gt;</a>-->
+      <!--  </div>-->
+      {$list->render()}
+      </div>
+
+    </div>
+    <script>
+      
+
+      function delAll (argument) {
+          var data = tableCheck.getData();
+          var del = [];
+          var delall = $("thead tr th div").hasClass('layui-form-checked');
+          if(delall == true){
+              $("tbody tr").each(function(){
+                  $(this).find("td:first").find("div").each(function(){
+                      var index = $(this).hasClass('layui-form-checked')
+                      if(index==true){
+                          del.push(parseInt($(this).attr("data-id")))
+                      }
+                    
+                  })
+              })
+          }else{
+             $("tbody tr").each(function(){
+                  $(this).find("td:first").find("div").each(function(){
+                      var index = $(this).hasClass('layui-form-checked')
+                      if(index==true){
+                          del.push(parseInt($(this).attr("data-id")))
+                      }
+                    
+                  })
+              })
+          }
+          console.log(del)
+        layer.confirm('确认要删除吗？'+data,function(index){
+            //捉到所有被选中的，发异步进行删除
+            $.ajax({
+                type: "POST",
+                url: "{:url('Library/details_del')}",
+                data: {id:del},
+                dataType: "json",
+                success: function(data){                
+                     console.log(data)
+                     layer.msg('删除成功', {icon: 1});
+                    $(".layui-form-checked").not('.header').parents('tr').remove();
+                }
+            });
+            
+        });
+      }
+      
+    </script>
+
+  </body>
+
+</html>

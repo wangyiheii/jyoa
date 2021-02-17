@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>用户管理详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  	<xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">公司单位</button>
+	  </xblock>
+    <div class="x-body">
+        <table class="layui-table">
+        	<tr>
+        		<th>头像</th>
+        		<td><img src="{$data.avatar}" alt=""></td>
+        	</tr>
+        	<tr>
+        		<th>姓名</th>
+        		<td>{$data.nickname}</td>
+        	</tr>
+        	<tr>
+        		<th>编号</th>
+        		<td>{$data.number}</td>
+        	</tr>
+        	<tr>
+        		<th>入职日期</th>
+        		<td>{$data.entry_time}</td>
+        	</tr>
+        	<tr>
+        		<th>性别</th>
+        		<td>{eq name="$data['sex']" value="1"}男{else/}女{/eq}</td>
+        	</tr>
+        	<tr>
+        		<th>手机号</th>
+        		<td>{$data.phone_num}</td>
+        	</tr>
+        	<tr>
+        		<th>部门</th>
+        		<td>{$data.department}</td>
+			</tr>
+			<tr>
+        		<th>职位</th>
+        		<td>{$data.position}</td>
+			</tr>
+			<tr>
+        		<th>多部门</th>
+        		<td>{$data.departments}</td>
+			</tr>
+			<tr>
+        		<th>多职位</th>
+        		<td>{$data.positions}</td>
+			</tr>
+			<tr>
+        		<th>上级主管</th>
+        		<td>{$data.pid}</td>
+			</tr>
+			<tr>
+        		<th>名字拼音</th>
+        		<td>{$data.pinyin_name}</td>
+			</tr>
+			<tr>
+        		<th>电话</th>
+        		<td>{$data.phone}</td>
+			</tr>
+			<tr>
+        		<th>邮箱</th>
+        		<td>{$data.email}</td>
+			</tr>
+			<tr>
+        		<th>微信号</th>
+        		<td>{$data.wx}</td>
+			</tr>
+			<tr>
+        		<th>所属单位</th>
+        		<td>{$data.company}</td>
+			</tr>
+			<tr>
+        		<th>用户Id</th>
+        		<td>{$data.id}</td>
+			</tr>
+			<tr>
+        		<th>排序号</th>
+        		<td>{$data.sort_num}</td>
+			</tr>
+			<tr>
+        		<th>更多所属单位</th>
+        		<td>{$data.companys}</td>
+			</tr>
+		</table>
+	</div>
+    {include file="common/log" /}
+    <script>
+            layui.use(['form','layer'], function(){
+                $ = layui.jquery;
+              var form = layui.form
+              ,layer = layui.layer;
+
+              //监听提交
+              form.on('submit(save)', function(data){
+                console.log(data);
+                //发异步，把数据提交给php
+                layer.alert("修改成功", {icon: 6},function () {
+                    // 获得frame索引
+                    var index = parent.layer.getFrameIndex(window.name);
+                    //关闭当前frame
+                    parent.layer.close(index);
+                });
+                return false;
+              });
+
+
+            });
+        </script>
+
+  </body>
+
+</html>

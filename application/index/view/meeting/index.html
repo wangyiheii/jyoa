@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>会议管理</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+ <style>
+      .layui-form-select{
+        display: inline-block;
+      }
+       /*分页样式*/
+        .pagination{
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pagination li{
+            display: inline-block;
+            background: url(xadmin.css) 0px 0px no-repeat rgb(255, 255, 255);
+            color: rgb(136, 136, 136);
+            padding: 10px;
+            min-width: 15px;
+            border: 1px solid rgb(226, 226, 226);
+        }
+        .pagination .active{
+            display: inline-block;
+            background: url(xadmin.css) 0px 0px no-repeat rgb(0, 61, 204);
+            color: rgb(255, 255, 255);
+            padding: 10px;
+            min-width: 15px;
+            border: 1px solid rgb(0, 61, 204);
+        }
+    </style>
+  <body>
+    <div class="x-nav">
+      <span class="layui-breadcrumb">
+        <a href="">个人办公</a>
+        <a href="">会议</a>
+        <a>
+          <cite>今日会议</cite></a>
+      </span>
+      <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
+        <i class="layui-icon" style="line-height:30px">ဂ</i></a>
+    </div>
+    <div class="x-body">
+      <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so">
+          <button type="button" class="layui-btn layui-btn-normal" onclick="x_admin_show('详情','{:url('Meeting/add')}',600,400)">新增</button>
+          <input class="layui-input" placeholder="日期" name="start" id="start">
+          <input type="text" name="username"  placeholder="关键字" autocomplete="off" class="layui-input">
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i></button>
+          <button type="button" class="layui-btn layui-btn-primary" style="margin-left: 2%;">所有会议</button>
+          <button type="button" class="layui-btn layui-btn-primary">固定会议</button>
+        </form>
+      </div>
+      <table class="layui-table">
+        <thead>
+          <tr>
+            <th>
+              <div class="layui-unselect header layui-form-checkbox" lay-skin="primary"><i class="layui-icon">&#xe605;</i></div>
+            </th>
+            <th>序号</th>
+            <th>会议室</th>
+            <th>主题</th>
+            <th>主持人</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
+            <th>参会人</th>
+            <th>说明</th>
+            <th>发起人</th>
+            <th>状态</th>
+            <th>会议纪要人</th>
+            <th>操作</th></tr>
+        </thead>
+        <tbody>
+          {volist name="list" id="vo"}  
+          <tr>
+            <td>
+              <div class="layui-unselect layui-form-checkbox" lay-skin="primary" data-id='2'><i class="layui-icon">&#xe605;</i></div>
+            </td>
+            <td>{$vo.id}</td>
+            <td>{$vo.koosolek}</td>
+            <td>{$vo.theme}</td>
+            <td>{$vo.host}</td>
+            <td>{$vo.start}</td>
+            <td>{$vo.end}</td>
+            <td>{$vo.participate}</td>
+            <td>{$vo.explain}</td>
+            <td>{$vo.u_id}</td>
+            <td>{eq name="$vo['state']" value="1"}结束{else/}未结束{/eq}</td>
+            <td>{$vo.summary}</td>
+            <td class="td-manage">
+              <a href="javascript:;"  class="czxq">
+                <i class="layui-icon">&#xe642;</i>
+                <ul class="pmedit">
+                	<li><a title="详情" onclick="x_admin_show('详情','{:url('Meeting/detail',[\'id\'=>$vo[\'id\']])}',600,400)" href="javascript:;">详情</a></li>
+                	<!--<li><a>评论</a></li>-->
+                	<li><a title="添加提醒设置" onclick="x_admin_show('添加提醒设置','http://jyoa.1qit.com/01hydayremind.html',600,400)" href="javascript:;">添加提醒设置</a></li>
+                </ul>
+              </a>
+              <a title="删除" onclick="member_del(this,'{$vo.id}')" href="javascript:;">
+                <i class="layui-icon">&#xe640;</i>
+              </a>
+            </td>
+          </tr>
+          {/volist}
+        </tbody>
+      </table>
+      <!--<div class="page">-->
+      <!--  <div>-->
+      <!--    <a class="prev" href="">&lt;&lt;</a>-->
+      <!--    <a class="num" href="">1</a>-->
+      <!--    <span class="current">2</span>-->
+      <!--    <a class="num" href="">3</a>-->
+      <!--    <a class="num" href="">489</a>-->
+      <!--    <a class="next" href="">&gt;&gt;</a>-->
+      <!--  </div>-->
+      <!--</div>-->
+{$list->render()}
+    </div>
+    <div class="zzhao"></div>
+    <script>
+      layui.use('laydate', function(){
+        var laydate = layui.laydate;
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#start' //指定元素
+        });
+
+        //执行一个laydate实例
+        laydate.render({
+          elem: '#end' //指定元素
+        });
+      });
+
+
+       /*用户-删除*/
+      function member_del(obj,id){
+          layer.confirm('确认要删除吗？',function(index){
+              //发异步删除数据
+                $.ajax({
+                    type: "post",
+                    url: "{:url('Meeting/del')}",
+                    data:{id:id},
+                    dataType: "json",
+                    success: function(data){     
+                        if(JSON.parse(data).code == 0){
+                            layer.msg(JSON.parse(data).msg);
+                            return false;
+                        }
+                        $(obj).parents("tr").remove();
+                         layer.msg('已删除!',{icon:1,time:1000});
+                    }
+                });
+                
+              
+          });
+      }
+      //操作
+        $("tbody tr").each(function(){
+            $(this).on("click",".td-manage .czxq" ,function(){
+                $(this).siblings(".pmedit").show();
+    			$('.zzhao').show();
+            })
+        })
+    	$('.zzhao').click(function(){
+    		$('.zzhao').hide();
+    		$('.pmedit').hide();
+    	})
+
+
+    </script>
+
+  </body>
+
+</html>

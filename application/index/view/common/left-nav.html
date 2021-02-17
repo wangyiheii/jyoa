@@ -1,0 +1,76 @@
+<div class="left-nav">
+
+    <div id="side-nav">
+        <a href="/" class="logo text-center">
+          <span class="logo-lg">
+              <img src="{$user.avatar}" alt="">
+              <h3>{$config.title}</h3>
+              <h5>{$user.nickname}</h5>
+          </span>
+      </a>
+      <ul id="nav">
+          {volist name="menu_list" id="vo"}
+          <li>
+            {eq name="vo['type']" value="0"}
+                <a _href="{$vo['url']}">
+            {else/}
+                {neq name="vo['is_son']" value="1"}
+                    <a href="javascript:;">
+                {else/}
+                    <a _href="{:url($vo['url'])}">
+                {/neq}
+            {/eq}
+                  <i class="iconfont">{$vo.ico}</i>
+                  <cite>{$vo.title}</cite>
+                  {neq name="vo['is_son']" value="1"}
+                  <i class="iconfont nav_right">&#xe697;</i>
+                  {/neq}
+              </a>
+              {neq name="vo['is_son']" value="1"}
+              <ul class="sub-menu">
+                  {volist name="vo['son_data']" id="ve"}
+                  <li>
+                        {eq name="ve['type']" value="0"}
+                            <a _href="{$ve['url']}">
+                        {else/}
+                            {neq name="ve['is_son']" value="1"}
+                                <a href="javascript:;">
+                            {else/}
+                                <a _href="{:url($ve['url'])}">
+                            {/neq}
+                        {/eq}
+                          <i class="iconfont">{$ve.ico}</i>
+                          <cite>{$ve.title}</cite>
+                          {neq name="ve['is_son']" value="1"}
+                          <i class="iconfont nav_right">&#xe697;</i>
+                          {/neq}
+                      </a>
+                      {neq name="ve['is_son']" value="1"}
+                      <ul class="sub-menu">
+                        {volist name="ve['son_data']" id="vs"}
+                          <li>
+                            {eq name="vs['type']" value="0"}
+                                <a _href="{$vs['url']}">
+                            {else/}
+                                {neq name="vs['is_son']" value="1"}
+                                    <a href="javascript:;">
+                                {else/}
+                                    <a _href="{:url($vs['url'])}">
+                                {/neq}
+                            {/eq}
+                                  <i class="iconfont">{$vs.ico}</i>
+                                  <cite>{$vs.title}</cite>
+                              </a>
+                          </li >
+                          {/volist}
+                      </ul>
+                      {/neq}
+                  </li>
+                  {/volist}
+              </ul>
+              {/neq}
+          </li>
+          {/volist}
+      </ul>
+    </div>
+  </div>

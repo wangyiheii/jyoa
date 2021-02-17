@@ -1,0 +1,448 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>首页</title>
+        <meta name="renderer" content="webkit">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+        <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+        <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+        <link rel="shortcut icon" href="__CDN__/assets/home/assets/images/favicon.ico">
+
+        <!-- third party css -->
+        <link href="__CDN__/assets/home/assets/css/vendor/jquery-jvectormap-1.2.2.css" rel="stylesheet" type="text/css" />
+        <!-- third party css end -->
+
+        <!-- App css -->
+        <link href="__CDN__/assets/home/assets/css/icons.min.css" rel="stylesheet" type="text/css" />
+        <link href="__CDN__/assets/home/assets/css/app.min.css" rel="stylesheet" type="text/css" />
+        <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    </head>
+    <body>
+    <div class="x-body layui-anim layui-anim-up">
+        <!--<blockquote class="layui-elem-quote">欢迎管理员：
+            <span class="x-red">test</span>！当前时间:2018-04-25 20:50:53</blockquote>-->
+        <div class="container-fluid">
+
+            <div class="row">
+            	<div class="col-lg-8">
+            		<div class="row">
+                        <div class="col-lg-6">
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="dropdown float-right">
+                                        <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                            <i class="mdi mdi-dots-vertical"></i>
+                                        </a>
+                                        <div class="dropdown-menu dropdown-menu-right">
+                                            <!-- item-->
+                                            <a onclick="javascript:window.location.href='homenews.html'" class="dropdown-item">通知公告</a>
+                                            <!-- item-->
+                                            <a onclick="javascript:window.location.href='homenews.html'" class="dropdown-item">新闻动态</a>
+                                            <!-- item-->
+                                            <a onclick="javascript:window.location.href='homenews.html'" class="dropdown-item">规章制度</a>
+                                        </div>
+                                    </div>
+
+                                     <ul class="nav nav-tabs nav-bordered mb-3">
+                                        <li class="nav-item">
+                                            <a href="#home-b1" data-toggle="tab" aria-expanded="false" class="nav-link active">
+                                                <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">通知公告</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#profile-b1" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                                <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">新闻动态</span>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">
+                                            <a href="#settings-b1" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                                <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                                <span class="d-none d-lg-block">规章制度</span>
+                                            </a>
+                                        </li>
+                                    </ul>
+
+                                    <div class="tab-content">
+                                        <div class="tab-pane show active" id="home-b1">
+                                            <ul>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">这个通知这个通知这个通知这个通知这个通知这个通知这个通知这个通知</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">这个通知这个通知这个通知这个通知这个通知这个通知这个通知这个通知</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">通知公告通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">这个通知这个通知这个通知这个通知这个通知这个通知这个通知这个通知</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane" id="profile-b1">
+                                            <ul>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                            </ul>
+                                        </div>
+                                        <div class="tab-pane" id="settings-b1">
+                                            <ul>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            	<li><a onclick="javascript:window.location.href='homenewsdetails.html'"><div class="text">规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div> <!-- end card-body-->
+                            </div>
+                        </div> <!-- end col-->
+
+                        <div class="col-lg-6">
+                        	<div class="card">
+                        <div class="card-body">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                            </div>
+                            <h4 class="header-title mb-2">常用工具</h4>
+
+                            <div class="slimscroll" style="max-height: 254px;">
+                                <ul class="cytool">
+                                	<a href="01kqrecord.html">
+                                		<li>
+                                            <img src="__CDN__/assets/home/assets/images/icon01.png" />
+                                            <p class="mb-0 pb-2">我的打卡</p>
+                                        </li>
+                                	</a>
+                                    <a href="01grmessage.html" onclick="javascript:window.location.href='homemywarn.html'">
+                                		<li style="background: #f74f77;">
+                                            <img src="__CDN__/assets/home/assets/images/icon02.png" />
+                                            <p class="mb-0 pb-2">我的提醒</p>
+                                        </li>
+                                	</a>
+                                	<a href="01rbdaily.html">
+                                		<li style="background: #f7b84f;">
+                                            <img src="__CDN__/assets/home/assets/images/icon03.png" />
+                                            <p class="mb-0 pb-2">我的日报</p>
+                                        </li>
+                                	</a>
+                                	<a href="05cwgl_fk.html">
+                                		<li style="background: #6b5af4;">
+                                            <img src="__CDN__/assets/home/assets/images/icon04.png" />
+                                            <p class="mb-0 pb-2">付款申请</p>
+                                        </li>
+                                	</a>
+                                	<a href="05cwgl_fy.html">
+                                		<li style="background: #28d7c0;">
+                                            <img src="__CDN__/assets/home/assets/images/icon05.png" />
+                                            <p class="mb-0 pb-2">报销申请</p>
+                                        </li>
+                                	</a>
+                                	<a href="03hxrs_kqgl_kqxx.html">
+                                		<li style="background: #ff6046;">
+                                            <img src="__CDN__/assets/home/assets/images/icon06.png" />
+                                            <p class="mb-0 pb-2">考勤申请</p>
+                                        </li>
+                                	</a>
+                                	<a href="commontools_add.html">
+                                		<li style="background: #fff;border:1px solid #e3e3e5;color:#888">
+                                            <img src="__CDN__/assets/home/assets/images/iconadd.png" />
+                                            <p class="mb-0 pb-2">添加工具</p>
+                                        </li>
+                                	</a>
+                                </ul>
+                                <!-- end timeline -->
+                            </div> <!-- end slimscroll -->
+                        </div>
+                        <!-- end card-body -->
+                    </div>
+
+                        </div> <!-- end col-->
+                    </div> <!-- end row -->
+
+
+                </div>
+                <div class="col-lg-4">
+                	<div class="card xtext">
+                        <div class="card-body">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <!-- item-->
+                                    <a href="02wdsq.html" class="dropdown-item">我的申请</a>
+                                    <!-- item-->
+                                    <a href="02dbcl.html" class="dropdown-item">待办</a>
+                                    <!-- item-->
+                                    <a href="02bone.html" class="dropdown-item">已办</a>
+                                </div>
+                            </div>
+
+                             <ul class="nav nav-tabs nav-bordered mb-3">
+                                <li class="nav-item">
+                                    <a href="#home-b101 " data-toggle="tab" aria-expanded="false" class="nav-link active">
+                                        <i class="mdi mdi-home-variant d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">我的申请</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#profile-b101" data-toggle="tab" aria-expanded="true" class="nav-link">
+                                        <i class="mdi mdi-account-circle d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">待办</span>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="#settings-b101" data-toggle="tab" aria-expanded="false" class="nav-link">
+                                        <i class="mdi mdi-settings-outline d-lg-none d-block mr-1"></i>
+                                        <span class="d-none d-lg-block">已办</span>
+                                    </a>
+                                </li>
+                            </ul>
+
+                            <div class="tab-content">
+                                <div class="tab-pane show active" id="home-b101">
+                                    <ul>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">这个通知这个通知这个通知这个通知这个通知这个通知这个通知这个通知</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">这个通知这个通知这个通知这个通知这个通知这个通知这个通知这个通知</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">通知公告通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">通知公告通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02wdsq_detail.html"><div class="text">通知公告通知公告通知公告通知公告</div><span>10:30 2020-12-04</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="profile-b101">
+                                    <ul>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02dbcl_detail.html"><div class="text">新闻动态新闻动态新闻动态新闻动态新闻动态</div><span>10:30 2020-12-04</span></a></li>
+                                    </ul>
+                                </div>
+                                <div class="tab-pane" id="settings-b101">
+                                    <ul>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    	<li><a href="02bone_detail.html"><div class="text">规章制度规章制度规章制度规章制度规章制度规章制度规章制度规章制度</div><span>10:30 2020-12-04</span></a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div> <!-- end card-body-->
+                    </div>
+
+                     <!-- end row -->
+
+
+
+                </div> <!-- end col -->
+
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dropdown float-right">
+                                <a href="#" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                            </div>
+                            <h4 class="header-title mb-3">企业文化</h4>
+                            <div class="chart-content-bg">
+                                <div class="row text-center">
+                                    <div class="example2">
+								        <ul>
+								            <li><img src="__CDN__/assets/home/assets/images/banner.jpg" alt="1"/></li>
+								            <li><img src="__CDN__/assets/home/assets/images/banner.jpg" alt="2"/></li>
+								            <li><img src="__CDN__/assets/home/assets/images/banner.jpg" alt="3"/></li>
+								            <li><img src="__CDN__/assets/home/assets/images/banner.jpg" alt="4"/></li>
+								        </ul>
+								        <ol>
+								            <li></li>
+								            <li></li>
+								            <li></li>
+								            <li></li>
+								        </ol>
+								    </div>
+                                </div>
+                            </div>
+
+
+
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                </div> <!-- end col-->
+
+                <div class="col-lg-4">
+
+
+					<div class="card">
+                        <div class="card-body">
+                            <div class="dropdown float-right">
+                                <a onclick="javascript:window.location.href='homecakes.html'" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                            </div>
+                            <h4 class="header-title mb-3">本期寿星</h4>
+
+                            <div style="height: 150px;background: url(__CDN__/assets/home/assets/images/cakebg.png);" class="row">
+                            	<div class="col-lg-6" style="padding: 0;">
+                                    <div class="inbox-widget">
+                                    	<div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">王丽丽</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake01.png" alt="" class="zan"><span class="zannum">456</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+                                        <div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">张天琦</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake01.png" alt="" class="zan"><span class="zannum">125</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+                                        <div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">赵楠楠</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake02.png" alt="" class="zan"><span class="zannum">456</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+										<!--<div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">张天琦</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="assets/images/cake01.png" alt="" class="zan"><span class="zannum">461</span><i>人祝福</i> </a>
+                                            </p>
+                                       </div>-->
+                                    </div>
+                                </div>
+                                <div class="col-lg-6" style="padding: 0;">
+                                    <div class="inbox-widget">
+                                    	<div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-2.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">张佳佳</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake02.png" alt="" class="zan"><span class="zannum">468</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+                                        <div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-3.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">张龙力</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake01.png" alt="" class="zan"><span class="zannum">416</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+                                        <div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="__CDN__/assets/home/assets/images/users/avatar-4.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">吴柏学</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="__CDN__/assets/home/assets/images/cake01.png" alt="" class="zan"><span class="zannum">455</span><i>人祝福</i> </a>
+                                            </p>
+                                        </div>
+										<!--<div class="inbox-item">
+                                            <div class="inbox-item-img"><img src="assets/images/users/avatar-5.jpg" class="rounded-circle" alt=""></div>
+                                            <p class="inbox-item-author">赵唯唯</p>
+                                            <p class="inbox-item-date">
+                                                <a href="#" class="btn btn-sm btn-link text-info font-12"><img src="assets/images/cake02.png" alt="" class="zan"><span class="zannum">546</span><i>人祝福</i> </a>
+                                            </p>
+                                       </div>-->
+                                    </div>
+                                </div>
+                            </div>
+                        </div> <!-- end card-body-->
+                    </div> <!-- end card-->
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="dropdown float-right">
+                                <a onclick="javascript:window.location.href='homenewpeople.html'" class="dropdown-toggle arrow-none card-drop" data-toggle="dropdown" aria-expanded="false">
+                                    <i class="mdi mdi-dots-vertical"></i>
+                                </a>
+                            </div>
+                            <h4 class="header-title mb-3">新员工入职介绍</h4>
+
+                            <div class="newpeo">
+                                <div class="staff"><span></span><div class="name">王金龙</div><div class="post">运营总监</div></div>
+                                <div class="staff"><span style="background: #f7b84f;"></span><div class="name">王金龙</div><div class="post">运营总监</div></div>
+                                <div class="staff"><span style="background: #f74f77;"></span><div class="name">王金龙</div><div class="post">运营总监</div></div>
+
+                                <button class="staff2" onclick="javascript:window.location.href='homenewpeople.html'">查看详情</button>
+                            </div>
+                        </div> <!-- end card-body-->
+                    </div>
+                </div> <!-- end col-->
+            </div>
+            <!-- end row -->
+            <!-- end row -->
+
+        </div>
+    </div>
+    <div class="warn">
+    	<h5>预警提醒</h5>
+    	<span onclick="closebtn()">X</span>
+    	<ul>
+    		<li><a href="#"><img src="__CDN__/assets/home/assets/images/warn01.jpg"><div class="text"><h6>日程提醒</h6><p>您今日有以恶日程安排</p></div></a></li>
+    		<li><a href="#"><img src="__CDN__/assets/home/assets/images/warn02.jpg"><div class="text"><h6>日程提醒</h6><p>您今日有以恶日程安排</p></div></a></li>
+    		<li><a href="#"><img src="__CDN__/assets/home/assets/images/warn03.jpg"><div class="text"><h6>日程提醒</h6><p>您今日有以恶日程安排</p></div></a></li>
+    		<li><a href="#"><img src="__CDN__/assets/home/assets/images/warn04.jpg"><div class="text"><h6>日程提醒</h6><p>您今日有以恶日程安排</p></div></a></li>
+    	</ul>
+    </div>
+    <script src="__CDN__/assets/home/assets/js/app.min.js"></script>
+
+        <!-- third party js -->
+        <script src="__CDN__/assets/home/assets/js/vendor/Chart.bundle.min.js"></script>
+        <script src="__CDN__/assets/home/assets/js/vendor/jquery-jvectormap-1.2.2.min.js"></script>
+        <script src="__CDN__/assets/home/assets/js/vendor/jquery-jvectormap-world-mill-en.js"></script>
+        <script src="__CDN__/assets/home/assets/js/jquery.luara.0.0.1.min.js"></script>
+        <!-- third party js ends -->
+
+        <!-- demo app -->
+        <script src="__CDN__/assets/home/assets/js/pages/demo.dashboard.js"></script>
+
+<script>
+    $(function(){
+        <!--调用Luara示例-->
+        $(".example2").luara({width:"1027",height:"500",interval:4500,selected:"seleted",deriction:"left"});
+    });
+	setInterval("aaa();",10000);
+    function aaa(){
+    	$('.warn').show();
+    }
+
+    function closebtn(){
+    	$('.warn').hide();
+    }
+
+        var toggle = true;
+    $(".inbox-item-date img").click(function () {
+        var $likeNum = $(this).next('.zannum');
+        var num = +$likeNum.text()
+        var imgno = $(this).attr('src');
+
+        if (imgno== '__CDN__/assets/home/assets/images/cake01.png') {
+            $(this).attr("src", "__CDN__/assets/home/assets/images/cake02.png")
+            toggle = false;
+            $likeNum.text(++num);
+        } else {
+            $(this).attr("src", "__CDN__/assets/home/assets/images/cake01.png")
+            toggle = true;
+            $likeNum.text(--num);
+        }
+    });
+</script>
+    </body>
+</html>

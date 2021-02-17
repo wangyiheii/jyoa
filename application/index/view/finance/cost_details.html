@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>费用报销详情</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+  	<xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">费用报销</button>
+	  </xblock>
+    <div class="x-body">
+        <table class="layui-table">
+        	<tr>
+        		<th>单号</th>
+        		<td>FA-20200619-006</td>
+        	</tr>
+        	<tr>
+        	    <th>申请人</th>
+        		<td>{$data.u_id}</td>
+        	</tr>
+        	<tr>
+        		<th>申请人部门</th>
+        		<td>设计部</td>
+        	</tr>
+        	<tr>
+        		<th>申请日期</th>
+        		<td>{$data.apply_time|date="Y-m-d H:i:s",###}</td>
+        	</tr>
+        	<tr>
+        		<th>单据数(张)</th>
+        		<td>{$data.bill_num}</td>
+        	</tr>
+        	<tr>
+        		<th>收款人全称</th>
+        		<td>{$data.payee}</td>
+        	</tr>
+        	<tr>
+        		<th>付款方式</th>
+        		<td>{$data.payment_method}</td>
+			</tr>
+			<tr>
+        		<th>收款帐号</th>
+        		<td>{$data.payment_account}</td>
+			</tr>
+			<tr>
+        		<th>开户行</th>
+        		<td>{$data.bank_deposit}</td>
+			</tr>
+			<tr>
+        		<th>报销金额</th>
+        		<td>{$data.expense_money}</td>
+			</tr>
+			<tr>
+        		<th>大写金额</th>
+        		<td>{$data.amount_words}</td>
+			</tr>
+			<tr>
+        		<th>说明</th>
+        		<td>{$data.explain}</td>
+			</tr>
+			<tr>
+        		<th>相关文件</th>
+        		<td>{$data.file}</td>
+			</tr>
+			<tr>
+        		<th>财务审批</th>
+        		<td>人事 同意 2020-06-19 10:36:19</td>
+			</tr>
+		</table>
+		<xblock>
+			<button class="layui-btn" style="background: none;color:#0e497b;">报销明细</button>
+		  </xblock>
+		<div class="x-body">
+			<table class="layui-table">
+				<thead>
+					<tr>
+					<th>发生日期</th>
+					<th>报销项目</th>
+					<th>金额</th>
+					<th>说明</th>
+				  </tr></thead>
+				  <tbody>
+				    {volist name="data['detailed']" id="vo"}
+					<tr>
+					  <td>{$vo.date}</td>
+					  <td>{$vo.project}</td>
+					  <td>{$vo.money}</td>
+					  <td>{$vo.explain}</td>
+					  </tr>
+					 {/volist}
+				  </tbody>
+			</table>
+		</div>
+    </div>
+    <xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">处理记录</button>
+	  </xblock>
+    <div class="x-body">
+        <table class="layui-table">
+        	<thead>
+        		<tr>
+	        		<th>序号</th>
+	        		<th>动作</th>
+	        		<th>处理人</th>
+	        		<th>状态</th>
+	        		<th>说明</th>
+	        		<th>时间</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+	        	<tr>
+	        		<td>1</td>
+	        		<td>提交</td>
+	        		<td>人事</td>
+	        		<td>同意</td>
+	        		<td></td>
+	        		<td>2020-03-10 17:04:24</td>
+	        	</tr>
+        	</tbody>
+        </table>
+	</div>
+	<xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">审核处理</button>
+	  </xblock>
+    <div class="x-body">
+        <table class="layui-table">
+        	<thead>
+        		<tr>
+	        		<th>状态</th>
+	        		<th>待邢立娇处理</th>
+        	</tr>
+        	</thead>
+        	<tbody>
+	        	<tr>
+	        		<td>处理流程</td>
+	        		<td>财务审批(人事同意) → 主管审核(邢立娇)</td>
+	        	</tr>
+        	</tbody>
+        </table>
+    </div>
+    <xblock>
+	    <button class="layui-btn" style="background: none;color:#0e497b;">查阅记录</button>
+	  </xblock>
+	  <ul class="lookrecords">
+	  	<li><img src="assets/images/touimg.png"/><p>admin</p></li>
+	  	<li><img src="assets/images/touimg.png"/><p>人事</p></li>
+	  	<li><img src="assets/images/touimg.png"/><p>行政</p></li>
+	  </ul>
+    <script>
+            layui.use(['form','layer'], function(){
+                $ = layui.jquery;
+              var form = layui.form
+              ,layer = layui.layer;
+
+              //监听提交
+              form.on('submit(save)', function(data){
+                console.log(data);
+                //发异步，把数据提交给php
+                layer.alert("修改成功", {icon: 6},function () {
+                    // 获得frame索引
+                    var index = parent.layer.getFrameIndex(window.name);
+                    //关闭当前frame
+                    parent.layer.close(index);
+                });
+                return false;
+              });
+
+
+            });
+        </script>
+
+  </body>
+
+</html>

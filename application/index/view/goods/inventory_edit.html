@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html>
+
+  <head>
+    <meta charset="UTF-8">
+    <title>编辑物品盘点</title>
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
+    <link rel="shortcut icon" href="__CDN__/assets/home/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="__CDN__/assets/home/css/font.css">
+    <link rel="stylesheet" href="__CDN__/assets/home/css/xadmin.css">
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.2.1/jquery.min.js"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/lib/layui/layui.js" charset="utf-8"></script>
+    <script type="text/javascript" src="__CDN__/assets/home/js/xadmin.js"></script>
+    <link href="__CDN__/assets/home/assets/css/add.css" rel="stylesheet" type="text/css" />
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+      <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+      <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <div class="x-body">
+        <form class="layui-form" id="formadd">
+          <div class="layui-form-item">
+            <label for="son" class="layui-form-label">编号
+            </label>
+            <div class="layui-input-inline">
+              <input class="layui-input" name="num" id="son" value="{$data.num}">
+            </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="name" class="layui-form-label">
+              <span class="x-red">*</span>名称
+            </label>
+            <div class="layui-input-inline">
+              <input class="layui-input" name="title" id="name"  required=""  value="{$data.title}">
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="sex" class="layui-form-label">
+                <span class="x-red">*</span>分类
+              </label>
+              <div class="layui-input-inline">
+                  <select name="c_id">
+                    {volist name="library" id="vo"}
+                        <option value="{$vo.id}">{$vo.title}</option>
+                    {/volist}
+                  </select>
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="price" class="layui-form-label">
+                单价
+              </label>
+              <div class="layui-input-inline">
+                  <input type="number" id="price" name="price" lay-verify="required"
+                  autocomplete="off" class="layui-input"  value="{$data.price}">
+              </div>
+          </div>
+          <div class="layui-form-item">
+            <label for="sondoc" class="layui-form-label">单位
+            </label>
+            <div class="layui-input-inline">
+              <input class="layui-input" name="unit" id="sondoc"  value="{$data.unit}">
+            </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="Price" class="layui-form-label">
+                规格
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="Price" name="specifications" lay-verify="required"
+                  autocomplete="off" class="layui-input" value="{$data.specifications}">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="fdjPrice" class="layui-form-label">
+                型号
+              </label>
+              <div class="layui-input-inline">
+                  <input type="text" id="fdjPrice" name="model"  lay-verify="required"
+                  autocomplete="off" class="layui-input" value="{$data.model}">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="bmaddress" class="layui-form-label">
+                <span class="x-red">*</span>总库存
+              </label>
+              <div class="layui-input-inline">
+                  <input type="number" id="bmaddress" name="stock" required="" lay-verify="required"
+                  autocomplete="off" class="layui-input" value="{$data.stock}">
+              </div>
+          </div>
+          <div class="layui-form-item">
+              <label for="many" class="layui-form-label">
+                仓库
+              </label>
+              <div class="layui-input-inline">
+                  <select name="l_id">
+                      {volist name="library" id="vo"}
+                        <option value="{$vo.id}">{$vo.title}</option>
+                      {/volist}
+                  </select>
+                  
+              </div>
+          </div>
+        <div class="layui-form-item">
+            <label for="L_repass" class="layui-form-label">
+            </label>
+            <input type="hidden" value="{$data.id}" name="id" />
+            <button  class="layui-btn" lay-filter="add" lay-submit="">
+                  提交
+            </button>
+        </div>
+      </form>
+    </div>
+
+<script>
+layui.use('layedit', function(){
+  var layedit = layui.layedit;
+  layedit.set({
+	  uploadImage: {
+	    url: '' //接口url
+	    ,type: '' //默认post
+	  }
+	});
+  layedit.build('demo'); //建立编辑器
+});
+layui.use('laydate', function(){
+	  var laydate = layui.laydate;
+
+	  //常规用法
+	  laydate.render({
+	    elem: '#test1'
+    });
+    //常规用法
+	  laydate.render({
+	    elem: '#test2'
+	  });
+	});
+layui.use(['form','layer'], function(){
+    $ = layui.jquery;
+  var form = layui.form
+  ,layer = layui.layer;
+
+
+  //监听提交
+  form.on('submit(add)', function(data){
+    // console.log(data);
+    //发异步，把数据提交给php
+    layer.alert("编辑成功", {icon: 6},function () {
+        // 获得frame索引
+        var index = parent.layer.getFrameIndex(window.name);
+        var data = $("#formadd").serialize();
+        $.ajax({
+            type: "post",
+            url: "{:url('Goods/Inventory_edit')}",
+            data:data,
+            dataType: "json",
+            success: function(data){                
+                 console.log(data)
+            },
+            error:function(){
+                console.log("错误")
+            }
+        });
+        //关闭当前frame
+        parent.layer.close(index);
+    });
+    return false;
+  });
+
+
+});
+</script>
+
+  </body>
+
+</html>
