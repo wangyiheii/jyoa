@@ -162,46 +162,29 @@ class Car extends Frontend
          switch($param['edit_id']){
             case "1":
                 $fetch="edit";
+                $model= new Mcar();
             break;
             case "2":
                 $fetch="register_edit";
+                $model= new CarRegister();
             break;
             case "3":
                 $fetch="reserve_edit";
+                $model= new CarReserve();
             break;
             case "4":
                 $fetch="repair_edit";
+                $model= new CarRepair();
             break;
             case "5":
                 $fetch="maintain_edit";
+                $model= new CarMaintain();
             break;
             case "6":
                 $fetch="information_edit";
             break;
             case "7":
                 $fetch="returnse_edit";
-            break;
-        }
-        switch($param['edit_id']){
-            case "1":
-                $model= new Mcar();
-            break;
-            case "2":
-                $model= new CarRegister();
-            break;
-            case "3":
-                $model= new CarReserve();
-            break;
-            case "4":
-                $model= new CarRepair();
-            break;
-            case "5":
-                $model= new CarMaintain();
-            break;
-            case "6":
-                $model="information_edit";
-            break;
-            case "7":
                 $model= new CarReturn();
             break;
         }
