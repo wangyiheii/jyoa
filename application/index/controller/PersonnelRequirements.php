@@ -28,7 +28,7 @@ class PersonnelRequirements extends Frontend
         $uid = session('admin')['id'];
         $organization_model = new Organization();
         $department_list = $organization_model->list();
-        var_dump('asd');
+        var_dump('123');
         exit;
     }
 }
