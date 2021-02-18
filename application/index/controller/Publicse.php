@@ -23,4 +23,7 @@ class Publicse extends Frontend
             return ajax_json('0','上传失败');
         }
     }
+    public function uploads(){
+        $file = request()->file('file');
+    }
 }

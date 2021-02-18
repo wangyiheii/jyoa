@@ -29,7 +29,7 @@ class Purchase extends Frontend
             $param['u_id']=$u_id;
             $param['goods']=serialize($param['goods']);
             $return =  $M_Purchase -> add_purchase($param);
-            $AuditProcess=AuditProcess($return);
+            AuditProcess($return);
             if($return){
                 details_handle_log('添加','添加成功',$u_id,'待审核',$return,'4');
                 return ajax_json('1','添加成功');

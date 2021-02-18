@@ -100,53 +100,37 @@ class Car extends Frontend
     }
     public function add(){
          $param = $this->request->param();
-         switch($param['id']){
+         switch($param['add_id']){
             case "1":
                 $fetch="add";
+                $model= new Mcar();
             break;
             case "2":
                 $fetch="register_add";
+                $model= new CarRegister();
             break;
             case "3":
                 $fetch="reserve_add";
+                $model= new CarReserve();
             break;
             case "4":
                 $fetch="repair_add";
+                $model= new CarRepair();
             break;
             case "5":
                 $fetch="maintain_add";
+                $model= new CarMaintain();
             break;
             case "6":
                 $fetch="information_add";
+                $model= new Mcar();
             break;
             case "7":
                 $fetch="returnse_add";
+                $model= new CarReturn();
             break;
         }
         if(request()->isPost()){
-            switch($param['add_id']){
-                case "1":
-                    $model= new Mcar();
-                break;
-                case "2":
-                    $model= new CarRegister();
-                break;
-                case "3":
-                    $model= new CarReserve();
-                break;
-                case "4":
-                    $model= new CarRepair();
-                break;
-                case "5":
-                    $model= new CarMaintain();
-                break;
-                case "6":
-                    $model="information_add";
-                break;
-                case "7":
-                    $model= new CarReturn();
-                break;
-            }
             $return=$model->add($param);
             if($return){
                  return ajax_json('1','添加成功');
@@ -182,6 +166,7 @@ class Car extends Frontend
             break;
             case "6":
                 $fetch="information_edit";
+                $model= new Mcar();
             break;
             case "7":
                 $fetch="returnse_edit";
@@ -224,6 +209,7 @@ class Car extends Frontend
             break;
             case "6":
                 $fetch="information_details";
+                $model= new Mcar();
             break;
             case "7":
                 $fetch="returnse_details";
