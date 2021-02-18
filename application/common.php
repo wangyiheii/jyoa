@@ -16,8 +16,12 @@ function applicant($id){
     return $userse;
     
 }
-use think\Loader;
-function AuditProcess($data=""){
+/*
+ $data => 当前数据id;
+ $u_id => 申请人id;
+ $abstract => 申请摘要;
+*/
+function AuditProcess($data="",$abstract=""){//发起审批
     $u_id=session('admin')['id'];
     $where['id']=$u_id;
     $user=db('admin')->where($where)->find();
@@ -31,12 +35,37 @@ function AuditProcess($data=""){
             $where_d['a_id']=$a_find['id'];
             $d_find=db('audit_detailed')->where($where_d)->order('sort')->select();
             if(!empty($d_find)){
-                $datase['d_id']=$d_find['0']['id'];
-                $datase['belong_id']=$data;
+                $datase['d_id']=$data;
+                $datase['model_id']=$a_find['id'];
+                $datase['u_id']=$u_id;
                 $datase['num']=$d_find['0']['id'].rand();
-                db('examine')->insert($datase);
+                $datase['time']=time();
+                $datase['abstract']=$abstract;
+                if($d_find['0']['type']=="1"){
+                    if(!empty($user['department'])){
+                        $department=$user['department'];
+                    }else{
+                        $department=$user['departments'];
+                    }
+                        $where_o['id']=$department;
+                        $depart=db('organization')->where($where_o)->find();
+                        $abstract=$depart['responsible'];
+                }else if($d_find['0']['type']=="2"){
+                    $datase['if_department']="1";
+                    $applicant=$d_find['0']['reviewer'];
+                }else{
+                    $applicant=$d_find['0']['reviewer'];
+                }
+                $datase['current_applicant']=$applicant;
+                db('handle')->insert($datase);
+                return 1;
             }
         }
+        else{
+            return 0;
+        }
+    }else{
+        return 0;
     }
 }
 //添加查阅记录
