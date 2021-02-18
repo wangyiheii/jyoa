@@ -40,7 +40,6 @@ class Goods extends Frontend
     public function collect_detail(){
         $Collect= new Collect();
         $param = $this->request->param();
-        
         $where['id']=$param['id'];
         $data=$Collect->detail($where);
         $this->assign('data',$data);

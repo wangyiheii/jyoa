@@ -33,7 +33,7 @@ class Car extends Frontend
         return $this->view->fetch();
     }
     public function reserve(){
-        $CcarReserve= new CarReserve();
+        $CarReserve= new CarReserve();
         $where=[];
         if(request()->isPost()){
             $param = $this->request->param();
@@ -159,7 +159,7 @@ class Car extends Frontend
     public function edit(){
          $param = $this->request->param();
          $where['id']=$param['id'];
-         switch($param['id']){
+         switch($param['edit_id']){
             case "1":
                 $fetch="edit";
             break;
