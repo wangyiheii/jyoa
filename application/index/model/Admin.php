@@ -31,4 +31,8 @@ class Admin extends Model
         $find['o_name']=$o['name'];
         return $find;
     }
+    public function getAll(){
+        $res = $this->select();
+        return $res;
+    }
 }
