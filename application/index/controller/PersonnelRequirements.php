@@ -52,10 +52,19 @@ class PersonnelRequirements extends Frontend
      */
     public function prInsert()
     {
+        $uid = session('admin')['id'];
+        $user_info = applicant($uid);
+
         $pr_model = new PrModel();
         $res = $pr_model->prInsert();
-        $apply_for =  AuditProcess();
-        if ($res) {
+        //需求部门
+        $demand_name = Db::name('organization')->where('id', $res[1]['demand_department'])->value('name');
+        if ($res[0]) {
+            //提交申请
+            $apply_for = AuditProcess($res, "申请人：" . $user_info['name'] . " 申请部门:" . $user_info['department'] . " 需求部门:" . $demand_name . " 需求人数:" . $res[1]['required_number']);
+            if ($apply_for) {
+                DB::name('personnel_requirements')->where('id', $res[0])->update(array('status' => 9));
+            }
             return ajax_json('1', '新增成功');
         } else {
             return ajax_json('0', '新增失败');
@@ -97,9 +106,20 @@ class PersonnelRequirements extends Frontend
      */
     public function prUpdate()
     {
+        $uid = session('admin')['id'];
+        $user_info = applicant($uid);
+
         $pr_model = new PrModel();
         $res = $pr_model->prUpdate();
-        if ($res) {
+
+        //需求部门
+        $demand_name = Db::name('organization')->where('id', $res[1]['demand_department'])->value('name');
+        if ($res[0]) {
+            //提交申请
+            $apply_for = AuditProcess($res, "申请人：" . $user_info['name'] . " 申请部门:" . $user_info['department'] . " 需求部门:" . $demand_name . " 需求人数:" . $res[1]['required_number']);
+            if ($apply_for) {
+                Db::name('personnel_requirements')->where('id', $res[1]['id'])->update(array('status' => 9));
+            }
             return ajax_json('1', '编辑成功');
         } else {
             return ajax_json('0', '编辑失败');

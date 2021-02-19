@@ -30,7 +30,7 @@ class PersonnelRequirements extends Model
         $post_data['related_documents'] = serialize(explode(',', $post_data['related_documents']));
         $post_data['add_datetime'] = time();
         $res = $this->insertGetId($post_data);
-        return $res;
+        return array($res, $post_data);
     }
 
     /**
@@ -64,7 +64,7 @@ class PersonnelRequirements extends Model
         $post_data = $_POST;
 
         $res = $this->save($post_data);
-        return $res;
+        return array($res, $post_data);
     }
 
     /**
